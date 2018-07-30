@@ -214,7 +214,7 @@ class FullscreenActivity : AppCompatActivity() {
     private fun setViewHolderOutOfFocus(pos: Int) {
         videoPlayerStateArray.put(pos, player.currentPosition)
         val viewHolder = list_item.findViewHolderForAdapterPosition(pos) as ListItemArrayAdapter.VideoItemViewHolder
-        viewHolder.onViewHolderOutOfFocus(pos)
+        viewHolder.onViewHolderOutOfFocus(pos, player.currentPosition)
     }
 
     private fun releasePlayer() {

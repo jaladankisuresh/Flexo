@@ -4,7 +4,17 @@
             "outputFile": "D:\\JVS\\Projects\\AndroidProjects\\Flexo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\01ae24e7530316a17b20fa9cd66a081a\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\4858e7cfd4b0d9bcfe7f3702d6f9aa73\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\1a9b8226831e5b288486c92f04b9777f\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -20,16 +30,6 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\5c2a89ef52105eee5fbaa6525c02d4a6\\res\\values-v16\\values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
                     }
                 }
             ]

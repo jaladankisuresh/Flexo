@@ -176,11 +176,11 @@ class RecyclerViewActivity : AppCompatActivity() {
     private fun setViewHolderOutOfFocus(pos: Int) {
         videoPlayerStateArray.put(pos, player.currentPosition)
         val viewHolder = list_item.findViewHolderForAdapterPosition(pos) as ListItemArrayAdapter.VideoItemViewHolder
-        viewHolder.onViewHolderOutOfFocus(pos)
+        viewHolder.onViewHolderOutOfFocus(pos, player.currentPosition)
     }
 
     private fun releasePlayer() {
-        if(inFocusViewHolderPosition > 0) setViewHolderOutOfFocus(inFocusViewHolderPosition)
+//        if(inFocusViewHolderPosition > 0) setViewHolderOutOfFocus(inFocusViewHolderPosition)
 
         player.run {
             if(playbackState != Player.STATE_IDLE)

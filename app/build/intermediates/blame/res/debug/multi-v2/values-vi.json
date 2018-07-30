@@ -4,7 +4,24 @@
             "outputFile": "D:\\JVS\\Projects\\AndroidProjects\\Flexo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\01ae24e7530316a17b20fa9cd66a081a\\res\\values-vi\\values-vi.xml",
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\4858e7cfd4b0d9bcfe7f3702d6f9aa73\\res\\values-vi\\values-vi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "31",
+                        "startColumns": "4",
+                        "startOffsets": "3084",
+                        "endColumns": "100",
+                        "endOffsets": "3180"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\1a9b8226831e5b288486c92f04b9777f\\res\\values-vi\\values-vi.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-ui-2.7.3.aar\\10983208b28f516a21b792205703483c\\res\\values-vi\\values-vi.xml",
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-ui-2.7.3.aar\\bd5adef7bd512d8af1d5addde22df022\\res\\values-vi\\values-vi.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -35,23 +52,6 @@
                         "startOffsets": "1874,1976,2083,2181,2274,2381,2490,2598,2703,2801,2908",
                         "endColumns": "101,106,97,92,106,108,107,104,97,106,91",
                         "endOffsets": "1971,2078,2176,2269,2376,2485,2593,2698,2796,2903,2995"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\5c2a89ef52105eee5fbaa6525c02d4a6\\res\\values-vi\\values-vi.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "31",
-                        "startColumns": "4",
-                        "startOffsets": "3084",
-                        "endColumns": "100",
-                        "endOffsets": "3180"
                     }
                 }
             ]

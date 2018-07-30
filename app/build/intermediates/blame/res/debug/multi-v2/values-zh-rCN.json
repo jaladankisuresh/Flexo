@@ -4,7 +4,24 @@
             "outputFile": "D:\\JVS\\Projects\\AndroidProjects\\Flexo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rCN\\values-zh-rCN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\01ae24e7530316a17b20fa9cd66a081a\\res\\values-zh-rCN\\values-zh-rCN.xml",
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-ui-2.7.3.aar\\bd5adef7bd512d8af1d5addde22df022\\res\\values-zh-rCN\\values-zh-rCN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,245,337,428,524,625,725,825,918,1014",
+                        "endColumns": "97,91,91,90,95,100,99,99,92,95,89",
+                        "endOffsets": "148,240,332,423,519,620,720,820,913,1009,1099"
+                    },
+                    "to": {
+                        "startLines": "19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1731,1829,1921,2013,2104,2200,2301,2401,2501,2594,2690",
+                        "endColumns": "97,91,91,90,95,100,99,99,92,95,89",
+                        "endOffsets": "1824,1916,2008,2099,2195,2296,2396,2496,2589,2685,2775"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\1a9b8226831e5b288486c92f04b9777f\\res\\values-zh-rCN\\values-zh-rCN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\5c2a89ef52105eee5fbaa6525c02d4a6\\res\\values-zh-rCN\\values-zh-rCN.xml",
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\4858e7cfd4b0d9bcfe7f3702d6f9aa73\\res\\values-zh-rCN\\values-zh-rCN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -35,23 +52,6 @@
                         "startOffsets": "2858",
                         "endColumns": "100",
                         "endOffsets": "2954"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-ui-2.7.3.aar\\10983208b28f516a21b792205703483c\\res\\values-zh-rCN\\values-zh-rCN.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,245,337,428,524,625,725,825,918,1014",
-                        "endColumns": "97,91,91,90,95,100,99,99,92,95,89",
-                        "endOffsets": "148,240,332,423,519,620,720,820,913,1009,1099"
-                    },
-                    "to": {
-                        "startLines": "19,20,21,22,23,24,25,26,27,28,29",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1731,1829,1921,2013,2104,2200,2301,2401,2501,2594,2690",
-                        "endColumns": "97,91,91,90,95,100,99,99,92,95,89",
-                        "endOffsets": "1824,1916,2008,2099,2195,2296,2396,2496,2589,2685,2775"
                     }
                 }
             ]

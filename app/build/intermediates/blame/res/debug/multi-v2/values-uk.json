@@ -4,7 +4,24 @@
             "outputFile": "D:\\JVS\\Projects\\AndroidProjects\\Flexo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-uk\\values-uk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-ui-2.7.3.aar\\10983208b28f516a21b792205703483c\\res\\values-uk\\values-uk.xml",
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\4858e7cfd4b0d9bcfe7f3702d6f9aa73\\res\\values-uk\\values-uk.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "31",
+                        "startColumns": "4",
+                        "startOffsets": "3122",
+                        "endColumns": "100",
+                        "endOffsets": "3218"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-ui-2.7.3.aar\\bd5adef7bd512d8af1d5addde22df022\\res\\values-uk\\values-uk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\01ae24e7530316a17b20fa9cd66a081a\\res\\values-uk\\values-uk.xml",
+                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\1a9b8226831e5b288486c92f04b9777f\\res\\values-uk\\values-uk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,23 +52,6 @@
                         "startOffsets": "105,215,317,423,509,617,735,814,894,975,1081,1188,1286,1394,1500,1609,1779,3041",
                         "endColumns": "109,101,105,85,107,117,78,79,80,105,106,97,107,105,108,169,99,80",
                         "endOffsets": "210,312,418,504,612,730,809,889,970,1076,1183,1281,1389,1495,1604,1774,1874,3117"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Suresh Jaladanki\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\5c2a89ef52105eee5fbaa6525c02d4a6\\res\\values-uk\\values-uk.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "31",
-                        "startColumns": "4",
-                        "startOffsets": "3122",
-                        "endColumns": "100",
-                        "endOffsets": "3218"
                     }
                 }
             ]

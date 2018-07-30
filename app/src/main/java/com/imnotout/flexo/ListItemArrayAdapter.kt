@@ -23,6 +23,12 @@ import kotlinx.android.synthetic.main.photo_list_item.view.*
 import kotlinx.android.synthetic.main.video_list_item.view.*
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import android.R.attr.bitmap
+import android.graphics.Bitmap
+import android.os.Build
+import android.media.MediaMetadataRetriever
+import android.view.TextureView
+
 
 class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
         RecyclerView.Adapter<ListItemArrayAdapter.ListItemViewHolder>() {
@@ -30,6 +36,7 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
 //    val userAgent = "Flexo-app"
 //    val okHttpClient = OkHttpClient.Builder().build()
     lateinit var player: SimpleExoPlayer
+    val videoPauseBitmapArray = HashMap<Int, Bitmap>()
     val dataSourceFactory: DataSource.Factory = CacheDataSourceFactory(cntx,
             100 * 1024 * 1024, 5 * 1024 * 1024)
 //    val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(cntx,
@@ -75,7 +82,7 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
     }
 
     override fun onBindViewHolder(holder: ListItemViewHolder, position: Int) {
-        holder.bind(collection.get(position))
+        holder.bind(position, collection.get(position))
     }
 
     override fun onViewRecycled(holder: ListItemViewHolder) {
@@ -89,14 +96,14 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
     }
 
     inner abstract class ListItemViewHolder(open val view: View, viewType: Int) : RecyclerView.ViewHolder(view) {
-        abstract fun bind(item: MediaItem)
+        abstract fun bind(position: Int, item: MediaItem)
 //        fun notifyVisibility(ratio: String) {
 //            view.findViewById<TextView>(R.id.txt_view).text = ratio
 //        }
     }
 
     inner class PhotoItemViewHolder(override val view: View, viewType: Int): ListItemViewHolder(view, viewType) {
-        override fun bind(item: MediaItem) {
+        override fun bind(position: Int, item: MediaItem) {
             GlideApp.with(view.context)
                     .load(item.url)
 //                    .centerCrop()
@@ -107,11 +114,8 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
         lateinit var videoItem: VideoItem
         lateinit var mediaSource: MediaSource
 
-        override fun bind(item: MediaItem) {
-            GlideApp.with(view.context)
-                    .load(item.url)
-//                    .centerCrop()
-                    .into(view.img_thumbnail)
+        override fun bind(position: Int, item: MediaItem) {
+            videoPauseBitmapArray.get(position)?.let { view.img_thumbnail.setImageBitmap(it) }
             videoItem = item as VideoItem
             mediaSource = ExtractorMediaSource.Factory(dataSourceFactory)
                     .createMediaSource(Uri.parse(item.videoUrl))
@@ -124,13 +128,33 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
                 player.prepare(mediaSource, false, false)
                 view.mov_player_view.player = player
                 view.img_thumbnail.visibility = View.GONE
+                val bitmap = videoPauseBitmapArray.remove(pos)
+                bitmap?.recycle()
             }
         }
-        fun onViewHolderOutOfFocus(pos: Int) {
+        fun onViewHolderOutOfFocus(pos: Int, seekTo: Long) {
             if(::player.isInitialized) {
+                val textureView = view.mov_player_view.videoSurfaceView as TextureView
+                val videoBitmap = textureView.bitmap
+                videoPauseBitmapArray.put(pos, videoBitmap)
+                view.img_thumbnail.setImageBitmap(videoBitmap)
                 player.stop()
                 view.mov_player_view.player = null
                 player.clearVideoSurface()
+
+//                var mediaMetadataRetriever: MediaMetadataRetriever? = null
+//                try {
+//                    mediaMetadataRetriever = MediaMetadataRetriever()
+//                    mediaMetadataRetriever.setDataSource(videoItem.videoUrl, HashMap<String, String>())
+//                    val bitmap = mediaMetadataRetriever.getFrameAtTime(seekTo)
+//                    view.img_thumbnail.setImageBitmap(bitmap)
+//                } catch (e: Exception) {
+//                    e.printStackTrace();
+//                    throw Throwable("Exception in retriveVideoFrameFromVideo(String videoPath)" + e.message)
+//
+//                } finally {
+//                    mediaMetadataRetriever?.release()
+//                }
                 view.img_thumbnail.visibility = View.VISIBLE
             }
         }

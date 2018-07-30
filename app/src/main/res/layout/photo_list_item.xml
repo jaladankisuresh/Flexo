@@ -9,6 +9,6 @@
     <ImageView
         android:id="@+id/img_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/video_min_height"
         android:layout_gravity="center_vertical"/>
 </FrameLayout>
