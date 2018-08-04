@@ -63,7 +63,7 @@ class RecyclerViewActivity : AppCompatActivity() {
         }
 
 //         Video and Image Adapter
-        val mediaItemArray = arrayListOf(MediaItem(MediaType.PHOTO.value, "file:///android_asset/1.jpg"),
+        val mediaItemArray = arrayListOf(MediaItem(MediaType.PHOTO.value, "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"),
                 VideoItem(MediaType.VIDEO.value, "file:///android_asset/5.jpg", "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"),
                 MediaItem(MediaType.PHOTO.value, "file:///android_asset/2.jpg"),
                 VideoItem(MediaType.VIDEO.value, "file:///android_asset/5.jpg",

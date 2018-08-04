@@ -19,15 +19,24 @@ import com.imnotout.flexo.Models.MediaType
 import com.imnotout.flexo.Models.VideoItem
 import com.imnotout.flexo.Utils.CacheDataSourceFactory
 import com.imnotout.torozo.Utils.GlideApp
+import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.photo_list_item.view.*
 import kotlinx.android.synthetic.main.video_list_item.view.*
-import okhttp3.Cache
-import okhttp3.OkHttpClient
-import android.R.attr.bitmap
+import android.content.Intent
 import android.graphics.Bitmap
-import android.os.Build
-import android.media.MediaMetadataRetriever
+import android.support.v4.content.FileProvider
 import android.view.TextureView
+import android.widget.Toast
+import com.imnotout.flexo.AndroidApplication.Companion.MEDIA_IMAGES
+import com.imnotout.flexo.AndroidApplication.Companion.MEDIA_VIDEOS
+import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.android.UI
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
@@ -39,20 +48,6 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
     val videoPauseBitmapArray = HashMap<Int, Bitmap>()
     val dataSourceFactory: DataSource.Factory = CacheDataSourceFactory(cntx,
             100 * 1024 * 1024, 5 * 1024 * 1024)
-//    val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(cntx,
-//            null, OkHttpDataSourceFactory(okHttpClient, userAgent, null))
-
-//    BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-//    TrackSelection.Factory videoTrackSelectionFactory =
-//    new AdaptiveTrackSelection.Factory(bandwidthMeter);
-//    TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
-//
-//    SimpleExoPlayer exoPlayer = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
-//    MediaSource audioSource = new ExtractorMediaSource(Uri.parse(url),
-//    new CacheDataSourceFactory(context, 100 * 1024 * 1024, 5 * 1024 * 1024), new DefaultExtractorsFactory(), null, null);
-//    exoPlayer.setPlayWhenReady(true);
-//    exoPlayer.prepare(audioSource);
-
 
     override fun getItemId(position: Int): Long = position.toLong()
     override fun onCreateViewHolder(view: ViewGroup, viewType: Int): ListItemViewHolder {
@@ -95,6 +90,44 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
         return collection.size
     }
 
+    @Throws(IOException::class)
+    private fun copyFile(src: File, dst: File) {
+        FileInputStream(src).use({ inStream  ->
+            FileOutputStream(dst).use({ outStream ->
+                // Transfer bytes from inStream to outStream
+                val inChannel = inStream.channel
+                val outChannel = outStream.channel
+                inChannel.transferTo(0, inChannel.size(), outChannel)
+            })
+        })
+    }
+
+    @Throws(IOException::class)
+    private fun createMediaFile(cntx: Context, type: MediaType): File {
+        // Create an image file name
+        val imageFileName = "media.flexo.imnotout.com"
+        val imageFile = when(type) {
+            MediaType.VIDEO -> {
+                val mediaPath = File(cntx.getFilesDir(), MEDIA_VIDEOS)
+                File.createTempFile(imageFileName, ".mp4", mediaPath)
+            }
+            else -> {
+                val mediaPath = File(cntx.getFilesDir(), MEDIA_IMAGES)
+                File.createTempFile(imageFileName, ".jpg", mediaPath)
+            }
+        }
+        return imageFile
+//    return FileProvider.getUriForFile(cntx, "com.imnotout.imageresizer.fileprovider", imageFile)
+    }
+
+    private fun sendMedia(cntx: Context, uri: Uri) {
+        val sendIntent = Intent()
+        sendIntent.setAction(Intent.ACTION_SEND)
+        sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
+        sendIntent.setType("image/jpeg")
+        cntx.startActivity(sendIntent)
+    }
+
     inner abstract class ListItemViewHolder(open val view: View, viewType: Int) : RecyclerView.ViewHolder(view) {
         abstract fun bind(position: Int, item: MediaItem)
 //        fun notifyVisibility(ratio: String) {
@@ -104,10 +137,33 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
 
     inner class PhotoItemViewHolder(override val view: View, viewType: Int): ListItemViewHolder(view, viewType) {
         override fun bind(position: Int, item: MediaItem) {
-            GlideApp.with(view.context)
-                    .load(item.url)
+            view.run {
+//                https://github.com/bumptech/glide/issues/459
+                setOnLongClickListener {
+                    async(UI) {
+                        val mediaInFile = async(CommonPool) {
+                            GlideApp
+                                    .with(context)
+                                    .downloadOnly()
+                                    .load(item.url)
+                                    .submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                                    .get()
+                        }.await()
+                        val mediaOutFile = createMediaFile(context, MediaType.PHOTO)
+                        copyFile(mediaInFile, mediaOutFile)
+                        val imageContentUri = FileProvider.getUriForFile(context, "com.imnotout.flexo.fileprovider",
+                                mediaOutFile)
+                        sendMedia(context, imageContentUri)
+                    }.invokeOnCompletion {
+                        it?.printStackTrace()
+                    }
+                    true
+                }
+                GlideApp.with(context)
+                        .load(item.url)
 //                    .centerCrop()
-                    .into(view.img_view)
+                        .into(img_view)
+            }
         }
     }
     inner class VideoItemViewHolder(override val view: View, viewType: Int): ListItemViewHolder(view, viewType) {
