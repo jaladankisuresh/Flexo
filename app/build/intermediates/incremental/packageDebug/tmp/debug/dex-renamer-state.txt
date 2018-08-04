@@ -1,4 +1,0 @@
-#Sat Aug 04 19:26:14 IST 2018
-base.0=D\:\\JVS\\Projects\\AndroidProjects\\Flexo\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
