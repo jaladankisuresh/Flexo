@@ -3,7 +3,7 @@ package com.imnotout.flexo
 import android.app.Application
 import java.io.File
 
-
+const val LOG_APP_TAG = "Flexo_App"
 class AndroidApplication : Application() {
 
     lateinit var mediaVideoPath: File

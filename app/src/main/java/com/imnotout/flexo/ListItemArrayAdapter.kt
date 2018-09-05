@@ -4,9 +4,6 @@ import android.content.Context
 import android.content.res.Configuration
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSourceFactory
@@ -25,8 +22,11 @@ import kotlinx.android.synthetic.main.video_list_item.view.*
 import android.content.Intent
 import android.graphics.Bitmap
 import android.support.v4.content.FileProvider
-import android.view.TextureView
+import android.support.v4.view.GestureDetectorCompat
+import android.util.Log
+import android.view.*
 import android.widget.Toast
+import com.google.android.exoplayer2.ui.PlayerView
 import com.imnotout.flexo.AndroidApplication.Companion.MEDIA_IMAGES
 import com.imnotout.flexo.AndroidApplication.Companion.MEDIA_VIDEOS
 import kotlinx.coroutines.experimental.*
@@ -136,10 +136,17 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
     }
 
     inner class PhotoItemViewHolder(override val view: View, viewType: Int): ListItemViewHolder(view, viewType) {
-        override fun bind(position: Int, item: MediaItem) {
-            view.run {
+        lateinit var item: MediaItem
+        val mDetector = GestureDetectorCompat(view.context, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onDown(event: MotionEvent?): Boolean {
+                Log.d(LOG_APP_TAG, "onDown: " + event.toString())
+                return true
+            }
+            override fun onLongPress(e: MotionEvent?) {
+                super.onLongPress(e)
+
 //                https://github.com/bumptech/glide/issues/459
-                setOnLongClickListener {
+                view.run {
                     async(UI) {
                         val mediaInFile = async(CommonPool) {
                             GlideApp
@@ -157,12 +164,19 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
                     }.invokeOnCompletion {
                         it?.printStackTrace()
                     }
-                    true
                 }
+            }
+        })
+        override fun bind(position: Int, item: MediaItem) {
+            this.item = item
+            view.run {
+//                setOnTouchListener { _, event ->
+//                    mDetector.onTouchEvent(event)
+//                }
                 GlideApp.with(context)
-                        .load(item.url)
+                    .load(item.url)
 //                    .centerCrop()
-                        .into(img_view)
+                    .into(img_view)
             }
         }
     }
@@ -179,6 +193,14 @@ class ListItemArrayAdapter(val cntx: Context, val collection: List<MediaItem>) :
         fun onViewRecycled() {
             mediaSource.releaseSource()
         }
+//        fun onViewHolderShowControlsUI(pos: Int) {
+//            val videoPlayerView = view as PlayerView
+//            videoPlayerView.showController()
+//        }
+//        fun onViewHolderHideControlsUI(pos: Int) {
+//            val videoPlayerView = view as PlayerView
+//            videoPlayerView.hideController()
+//        }
         fun onViewHolderInFocus(pos: Int) {
             if(::player.isInitialized) {
                 player.prepare(mediaSource, false, false)

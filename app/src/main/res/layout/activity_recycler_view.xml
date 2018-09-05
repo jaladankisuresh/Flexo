@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/list_item"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-</android.support.v7.widget.RecyclerView>
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lyt_ui_controls">
+        <ImageButton android:id="@id/exo_play"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#CC333333"
+            android:visibility="gone"
+            style="@style/ExoMediaButton.Play"/>
+
+        <ImageButton android:id="@id/exo_pause"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#CC333333"
+            style="@style/ExoMediaButton.Pause"/>
+
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+            android:id="@id/exo_progress"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            app:scrubber_color="@color/colorAccent"
+            app:played_color="@color/colorAccent"/>
+    </FrameLayout>
+</FrameLayout>

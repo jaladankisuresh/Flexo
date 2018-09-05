@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.imnotout.flexo">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -15,17 +16,20 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecyclerViewActivity">
-        </activity>
-        <activity android:name=".SimpleRecyclerViewActivity" />
+        <activity android:name=".RecyclerViewActivity" />
+        <activity
+            android:name=".SimpleRecyclerViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".FullscreenActivity"
             android:label="@string/title_activity_fullscreen"
-            android:theme="@style/FullscreenTheme">
-        </activity>
+            android:theme="@style/FullscreenTheme" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.imnotout.flexo.fileprovider"
@@ -35,6 +39,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".GestureTestActivity">
+        </activity>
+        <activity android:name=".GestureTest2Activity">
+        </activity>
     </application>
 
 </manifest>
